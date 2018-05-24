@@ -7,7 +7,7 @@
 #include <time.h> //Libreria para poder poner la hora 
 #include <windows.h> //Permite el uso del comando Sleep
 
-
+char menu();
 int esDigitoValido(char caracter);
 int esLetraValida(char caracter);
 int esMatriculaValida(char matricula[8]);
@@ -42,7 +42,7 @@ void main() {
 	struct TPlaza parking[NPLAZAS];
 
 
-	struct TUsuario persona[NUSERS] = { { "Marcos", "qwerty" },{ "User", "4321" }, { "Admin", "1234" } }; // Defino cuantos usuarios y sus contraseñas para acceder
+	struct TUsuario persona[NUSERS] = { { "Marcos", "qwerty" },{ "User", "4321" }, { "Admin", "1234" } }; // Defino cuantos usuarios y sus contraseÃ±as para acceder
 
 	char opcion; // opcion del menu 
 	char vehiculo; // Para seleccionar moto o coche 'M'= Moto 'C'= Coche
@@ -75,7 +75,7 @@ void main() {
 
 				for (j = 0; j <= NUSERS; j++) {
 					if (existeUsuario(persona[j], username, password) == 1) {
-						printf("Introduce tu contrase%ca\n",164); // 164 para poner la letra ñ
+						printf("Introduce tu contrase%ca\n",164); // 164 para poner la letra Ã±
 						gets(password);
 
 						if (existeUsuario(persona[j], username, password) == 2) {
@@ -110,23 +110,7 @@ void main() {
 	//Si el registro es correcto se accede al menu principal
 	while (bucle) { // Bucle infinito
 
-		system("cls");
-		system("color 0B");
-
-		time_t result = time(NULL);
-		char str[26];
-		ctime_s(str, sizeof str, &result);
-		printf("%s\n", str);
-
-		printf("Bienvenido al aparcamiento.\n\n");
-		printf("Pulse R para reservar una plaza.\n");
-		printf("Pulse A para abandonar una plaza.\n");
-		printf("Pulse E para ver el estado del aparcamiento.\n");
-		printf("Pulse B para buscar una matricula.\n");
-		printf("Pulse S para salir\n");
-		scanf_s("%c", &opcion);
-		getchar();
-		system("cls");
+		opcion=menu();
 
 		switch (opcion) {
 
@@ -405,7 +389,7 @@ void main() {
 
 	}
 
-void menu(){
+char menu(){
 
 	char opcion;
 	system("cls");
@@ -425,6 +409,7 @@ void menu(){
 	scanf_s("%c", &opcion);
 	getchar();
 	system("cls");
+	return opcion;
 }
 
 	int esDigitoValido(char caracter) {
